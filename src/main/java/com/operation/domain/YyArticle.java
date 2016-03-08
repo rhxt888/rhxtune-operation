@@ -3,6 +3,8 @@ package com.operation.domain;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
+import java.util.Date;
+
 /**
  * @author : Hui.Wang [wang.hui@rhxtune.com]
  * @version : 1.0
@@ -24,7 +26,7 @@ public class YyArticle {
 
     private long viewCount;
 
-    private long createdTime;
+    private long createdTime = new Date().getTime();
 
     private boolean isDeleted;
 

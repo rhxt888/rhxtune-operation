@@ -1,6 +1,7 @@
 package com.operation.spi;
 
 import com.operation.domain.YyAdminUser;
+import com.operation.domain.YyAdminUserLog;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,15 @@ public interface IAdminUserService {
      *
      * @param adminUser
      */
-    void save(YyAdminUser adminUser);
+    YyAdminUser save(YyAdminUser adminUser);
+
+    /**
+     * id不能为空
+     *
+     * @param adminUser
+     * @return
+     */
+    YyAdminUser update(YyAdminUser adminUser);
 
     /**
      * 查询所有管理员
@@ -26,9 +35,7 @@ public interface IAdminUserService {
      * @param pageSize
      * @param pageIndex
      * @param keyword
-     * @return
-     *
-     * 返回结果如下:
+     * @return 返回结果如下:
      * <pre>
      *     {
      *         total: 12,
@@ -36,15 +43,25 @@ public interface IAdminUserService {
      *     }
      * </pre>
      */
-    Map<String,Object> findAll(Integer pageSize, Integer pageIndex, String keyword);
+    Map<String, Object> findAll(Integer pageSize, Integer pageIndex, String keyword);
 
     /**
      * 登陆
      *
-     * @param adminUser
      * @return
      */
-    YyAdminUser signin(YyAdminUser adminUser);
+    YyAdminUser signin(String email, String password);
+
+    void recordLog(YyAdminUserLog yyAdminUserLog);
+
+
+    /**
+     * 根据 email查询
+     *
+     * @param email
+     * @return
+     */
+    YyAdminUser findByEmail(String email);
 
     /**
      * 修改登陆密码
@@ -54,5 +71,12 @@ public interface IAdminUserService {
      * @return
      */
     boolean updatePassword(String email, String password);
+    boolean updatePasswordById(String id, String password);
+
+    List<YyAdminUserLog> findSigninLogById(String adminUserId, Integer pageIndex, Integer pageSize);
+
+    void delete(String adminUserId);
+
+    YyAdminUser findById(String adminUserId);
 
 }

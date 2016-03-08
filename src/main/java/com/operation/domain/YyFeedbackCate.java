@@ -4,6 +4,8 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
+import java.util.Date;
+
 /**
  * @author : 信义明 [xin.yiming@rhxtune.com]
  * @version : 1.0
@@ -19,6 +21,9 @@ public class YyFeedbackCate {
     private String name;
 
     private String appSlug;
+
+
+    private long createdTime = new Date().getTime();
 
     public String getId() {
         return id.toHexString();

@@ -4,6 +4,8 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
+import java.util.Date;
+
 /**
  * @author : Hui.Wang [wang.hui@rhxtune.com]
  * @version : 1.0
@@ -25,6 +27,17 @@ public class YyAdminUser {
     private Long lastSigninTime;
     private String lastSigninIp;
     private String lastAgents;
+    private String role; //admin, operation
+    private long signinCount;
+    private boolean isDeleted;
+
+    public long getSigninCount() {
+        return signinCount;
+    }
+
+    public void setSigninCount(long signinCount) {
+        this.signinCount = signinCount;
+    }
 
     public ObjectId getId() {
         return id;
@@ -106,5 +119,39 @@ public class YyAdminUser {
 
     public void setLastAgents(String lastAgents) {
         this.lastAgents = lastAgents;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+
+        this.role = role;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    @Override
+    public String toString() {
+        return "YyAdminUser{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userType=" + userType +
+                ", screenName='" + screenName + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", createTime=" + createTime +
+                ", lastSigninTime=" + lastSigninTime +
+                ", lastSigninIp='" + lastSigninIp + '\'' +
+                ", lastAgents='" + lastAgents + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

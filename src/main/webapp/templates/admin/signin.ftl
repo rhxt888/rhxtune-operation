@@ -9,7 +9,8 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin"
+    <p class="help-block text-danger text-center">${RequestParameters["message"]!""}</p>
+    <form class="form-signin" name="" action="/admin/signin" method="post">
         <h2 class="form-signin-heading">登录运营系统</h2>
         <label for="inputEmail" class="sr-only"></label>
         <input type="email" id="inputEmail" name="email" class="form-control" placeholder="邮箱" required="" autofocus="">

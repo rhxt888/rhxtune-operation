@@ -5,6 +5,8 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
+
 /**
  * @author : 信义明 [xin.yiming@rhxtune.com]
  * @version : 1.0
@@ -20,6 +22,8 @@ public class YyFeedbackPre {
     private String appSlug;
     @Reference
     private YyFeedbackCate cate;
+
+    private long createdTime = new Date().getTime();
 
     public String getId() {
         return id.toHexString();

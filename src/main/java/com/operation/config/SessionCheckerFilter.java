@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 public class SessionCheckerFilter implements Filter {
 
     @Resource
-    private WebConfig webConfig;
+    private WebConfiguration webConfig;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -32,17 +32,24 @@ public class SessionCheckerFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/json; charset=UTF-8");
+//        response.setContentType("text/json; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         String servletPath = request.getServletPath();
 
-        Pattern pattern = Pattern.compile("/v\\d+/(phoneCode/.*$)|(account/sign.*$)|(location/.*$)|(account/forget.*$)");
+        Pattern pattern = Pattern.compile("/(admin/sign.*$)|(admin/forget.*$)|(static/)");
+
         if(pattern.matcher(servletPath).find()){
             filterChain.doFilter(request,response);
         } else {
             YyAdminUser sessionUser = (YyAdminUser)request.getSession().getAttribute(webConfig.getSessionName());
-            System.out.println("current signin:"+ sessionUser.getEmail());
+            if(null != sessionUser){
+                request.setAttribute("sessionUser",sessionUser);
+                filterChain.doFilter(request,response);
+            } else {
+                request.setAttribute("message","请重新登陆");
+                response.sendRedirect("/admin/signin");
+            }
         }
     }
 

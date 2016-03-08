@@ -1,8 +1,12 @@
 package com.operation.domain;
 
+import com.rhxtune.base.model.mongo.MCommunity;
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
+
+import java.util.Date;
 
 /**
  * @author : Hui.Wang [wang.hui@rhxtune.com]
@@ -26,13 +30,15 @@ public class YyBanner {
     private String masterImg;
     private String description;
     private String url;
+    @Embedded
+    private MCommunity community;
     @Reference
     private YyArticle article;
     private String status;  //draft,online,offline
     private long viewCount;
     private long startTime;
     private long endTime;
-    private long createdTime;
+    private long createdTime = new Date().getTime();
     private boolean isDeleted;
 
     public String getId() {
@@ -152,6 +158,23 @@ public class YyBanner {
     }
 
     public void setDeleted(boolean deleted) {
+
         isDeleted = deleted;
+    }
+
+    public MCommunity getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(MCommunity community) {
+        this.community = community;
+    }
+
+    public YyArticle getArticle() {
+        return article;
+    }
+
+    public void setArticle(YyArticle article) {
+        this.article = article;
     }
 }

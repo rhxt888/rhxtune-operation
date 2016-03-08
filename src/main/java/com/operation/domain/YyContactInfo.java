@@ -6,6 +6,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,6 +23,8 @@ public class YyContactInfo {
     private ObjectId id;
 
     private String appSlug;
+
+    private long createdTime = new Date().getTime();
 
     @Property(concreteClass = java.util.TreeSet.class)
     private Set<String> tags;
@@ -69,5 +72,13 @@ public class YyContactInfo {
 
     public void setAppSlug(String appSlug) {
         this.appSlug = appSlug;
+    }
+
+    public long getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
     }
 }

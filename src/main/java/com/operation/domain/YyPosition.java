@@ -3,6 +3,8 @@ package com.operation.domain;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
+import java.util.Date;
+
 /**
  * @author : Hui.Wang [wang.hui@rhxtune.com]
  * @version : 1.0
@@ -24,11 +26,11 @@ public class YyPosition {
 
     private boolean isEnable;
 
-    private long createdTime;
-
     private boolean isDeleted;
 
     private String appSlug;
+
+    private long createdTime = new Date().getTime();
 
     public String getId() {
         return id;
