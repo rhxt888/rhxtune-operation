@@ -29,6 +29,10 @@ public class YyMessage {
     @Embedded
     private YyArticle article;
 
+
+    @Embedded
+    private YyAdminUser adminUser;
+
     //推送范围
     private Map<String, Object> scope;
 
@@ -88,5 +92,29 @@ public class YyMessage {
 
     public void setArticle(YyArticle article) {
         this.article = article;
+    }
+
+    public YyAdminUser getAdminUser() {
+        return adminUser;
+    }
+
+    public void setAdminUser(YyAdminUser adminUser) {
+        this.adminUser = adminUser;
+    }
+
+    public Map<String, Object> getScope() {
+        return scope;
+    }
+
+    public void setScope(Map<String, Object> scope) {
+        this.scope = scope;
+    }
+
+    public long getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
     }
 }

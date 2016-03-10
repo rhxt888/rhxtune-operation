@@ -16,10 +16,10 @@
            <!-- Nav tabs -->
            <ul class="nav nav-tabs" role="tablist">
                <li class="nav-item">
-                   <a class="nav-link active" role="tab" data-toggle="tab">推送记录</a>
+                   <a class="nav-link" role="tab" href="/message"  data-toggle="tab">推送记录</a>
                </li>
                <li class="nav-item">
-                   <a class="nav-link" href="/message/tag" role="tab" data-toggle="tab">tag</a>
+                   <a class="nav-link active" role="tab" data-toggle="tab">tag</a>
                </li>
                <li class="nav-item">
                    <a class="nav-link" href="/message/token" role="tab" data-toggle="tab">token</a>
@@ -28,7 +28,9 @@
 
            <!-- Tab panes -->
            <div class="tab-content">
-               <div role="tabpanel" class="tab-pane active" id="home">...</div>
+               <div role="tabpanel" class="tab-pane active" id="tag">
+
+               </div>
            </div>
        </div>
 

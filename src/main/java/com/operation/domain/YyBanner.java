@@ -25,13 +25,18 @@ public class YyBanner {
     private YyPosition position;
     private String num;
     private String appSlug;
-    private String name;
+    private String remark;
     private String title;
     private String masterImg;
     private String description;
     private String url;
+
+    @Embedded
+    private YyAdminUser adminUser;
+
     @Embedded
     private MCommunity community;
+
     @Reference
     private YyArticle article;
     private String status;  //draft,online,offline
@@ -71,14 +76,6 @@ public class YyBanner {
 
     public void setAppSlug(String appSlug) {
         this.appSlug = appSlug;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTitle() {
@@ -176,5 +173,21 @@ public class YyBanner {
 
     public void setArticle(YyArticle article) {
         this.article = article;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public YyAdminUser getAdminUser() {
+        return adminUser;
+    }
+
+    public void setAdminUser(YyAdminUser adminUser) {
+        this.adminUser = adminUser;
     }
 }

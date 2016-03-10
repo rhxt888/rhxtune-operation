@@ -29,6 +29,9 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="pull-right mvm">
+                        <a href="/message/send" class="btn btn-success-outline">发送消息</a>
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -40,17 +43,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list messageList.list?exists as message>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>
-                                <#--<a href="/${message.id}" class="btn btn-sm btn-info-outline">详情</a>-->
-                            </td>
-                        </tr>
-                        </#list>
+                        <#if messageList?has_content>
+                            <#list messageList.list?exists as message>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>
+                                <a href="/${message.id}" class="btn btn-sm btn-info-outline">详情</a>
+                                </td>
+                            </tr>
+                            </#list>
+                        <#else>
+
+                        </#if>
                         </tbody>
                     </table>
                 </div>

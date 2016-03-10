@@ -1,5 +1,6 @@
 package com.operation.spi;
 
+import com.operation.domain.YyAdminUser;
 import com.operation.domain.YyArticle;
 
 import java.util.Map;
@@ -26,7 +27,7 @@ public interface IYyArticleService {
      * @param keyword
      * @return
      */
-    Map<String, Object> findAll(Integer pageSize, Integer pageIndex, String keyword);
+    Map<String, Object> findAll(Integer pageSize, Integer pageIndex, String status, Boolean isDeleted, String keyword);
 
     /**
      * 根据id查询文章
@@ -35,4 +36,9 @@ public interface IYyArticleService {
      * @return
      */
     YyArticle findOne(String id,Boolean isReaded);
+
+    void delete(String adminUserId);
+
+    YyArticle  update(YyArticle article);
+
 }

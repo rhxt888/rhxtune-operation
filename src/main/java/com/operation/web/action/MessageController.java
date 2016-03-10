@@ -20,4 +20,23 @@ public class MessageController {
 
         return "message/index";
     }
+
+
+    @RequestMapping(value = "/send",method = RequestMethod.GET)
+    public String send(){
+        return "message/send";
+    }
+
+
+    @RequestMapping(value = "/tag",method = RequestMethod.GET)
+    public String tagList(){
+        return "message/tag";
+    }
+
+
+    @RequestMapping(value = "/token",method = RequestMethod.GET)
+    public String tokenList(){
+        return "message/token";
+    }
+
 }

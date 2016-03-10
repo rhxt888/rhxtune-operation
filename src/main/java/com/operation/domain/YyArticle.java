@@ -1,5 +1,6 @@
 package com.operation.domain;
 
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -17,10 +18,11 @@ public class YyArticle {
 
     @Id
     private String id;
-    private String num;
     private String title;
     private String content;
-    private String path;
+
+    @Embedded
+    private YyAdminUser adminUser;
 
     private String status;  //draft,online,offline
 
@@ -28,7 +30,7 @@ public class YyArticle {
 
     private long createdTime = new Date().getTime();
 
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 
     private String template;
 
@@ -38,14 +40,6 @@ public class YyArticle {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNum() {
-        return num;
-    }
-
-    public void setNum(String num) {
-        this.num = num;
     }
 
     public String getTitle() {
@@ -62,14 +56,6 @@ public class YyArticle {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public String getStatus() {
@@ -110,5 +96,13 @@ public class YyArticle {
 
     public void setTemplate(String template) {
         this.template = template;
+    }
+
+    public YyAdminUser getAdminUser() {
+        return adminUser;
+    }
+
+    public void setAdminUser(YyAdminUser adminUser) {
+        this.adminUser = adminUser;
     }
 }

@@ -1,5 +1,6 @@
 package com.operation.domain;
 
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -26,9 +27,9 @@ public class YyPosition {
 
     private boolean isEnable;
 
-    private boolean isDeleted;
 
-    private String appSlug;
+    @Embedded
+    private YyApp appInfo;
 
     private long createdTime = new Date().getTime();
 
@@ -80,19 +81,11 @@ public class YyPosition {
         this.createdTime = createdTime;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
+    public YyApp getAppInfo() {
+        return appInfo;
     }
 
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
-
-    public String getAppSlug() {
-        return appSlug;
-    }
-
-    public void setAppSlug(String appSlug) {
-        this.appSlug = appSlug;
+    public void setAppInfo(YyApp appInfo) {
+        this.appInfo = appInfo;
     }
 }
