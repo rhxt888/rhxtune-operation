@@ -15,74 +15,74 @@
         <div class="col-sm-6">
             <h5>添加Banner内容</h5>
             <form action="/banner/add" method="post">
-                <fieldset class="form-group">
-                    <label for="exampleInputEmail1">banner显示的位置</label>
-                    <select class="form-control c-select" id="exampleSelect2" name="role">
-                        <option value="admin" selected>甜园生活</option>
-                        <option value="operation">甜园TV</option>
-                    </select>
-                    <small class="text-muted">.</small>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="exampleSelect2">小区(可选)</label>
-                    <select class="form-control c-select" id="exampleSelect2" name="role">
-                        <option value="admin" selected>管理员</option>
-                        <option value="operation">运营</option>
-                    </select>
-                </fieldset>
+                <#--<fieldset class="form-group">-->
+                    <#--<label for="exampleInputEmail1">banner显示的位置</label>-->
+                    <#--<select class="form-control c-select" id="exampleSelect1" name="position">-->
+                        <#--<option value="admin" selected>甜园生活</option>-->
+                        <#--<option value="operation">甜园TV</option>-->
+                    <#--</select>-->
+                    <#--<small class="text-muted">.</small>-->
+                <#--</fieldset>-->
+                <#--<fieldset class="form-group">-->
+                    <#--<label for="exampleSelect2">小区(可选)</label>-->
+                    <#--<select class="form-control c-select" id="exampleSelect2" name="community">-->
+                        <#--<option value="admin" selected>管理员</option>-->
+                        <#--<option value="operation">运营</option>-->
+                    <#--</select>-->
+                <#--</fieldset>-->
 
                 <fieldset class="form-group">
                     <label>标题</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="title">
                 </fieldset>
                 <fieldset class="form-group">
                     <label>主图</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="masterImg>
                     <small class="text-muted">banner显示时的主要图片.</small>
                 </fieldset>
                 <fieldset class="form-group">
                     <label>外部URL连接</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="url">
                     <small class="text-muted">点击后将跳转到该连接(如果同时选择了内容连接,将被替换).</small>
                 </fieldset>
-                <fieldset class="form-group">
-                    <label for="exampleSelect2">内容连接</label>
-                    <select class="form-control c-select" id="exampleSelect2" name="role">
-                        <option value="admin" selected>afasdfasdfasdf</option>
-                        <option value="operation">alfdjasdfk</option>
-                    </select>
-                </fieldset>
+                <#--<fieldset class="form-group">-->
+                    <#--<label for="exampleSelect2">内容连接</label>-->
+                    <#--<select class="form-control c-select" id="exampleSelect2" name="role">-->
+                        <#--<option value="admin" selected>afasdfasdfasdf</option>-->
+                        <#--<option value="operation">alfdjasdfk</option>-->
+                    <#--</select>-->
+                <#--</fieldset>-->
 
                 <fieldset class="form-group">
                     <label for="exampleSelect2">起始时间</label>
                     <div class="form-inline">
                         <div class="form-group">
                             <label for="exampleInputName2">开始时间</label>
-                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe" name="startTime">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail2">结束时间</label>
-                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com" name="endTime">
                         </div>
                     </div>
                     <small class="text-muted">展示多长时间,如果时间很长,需要设置很大一个结束时间</small>
                 </fieldset>
 
-                <fieldset class="form-group">
-                    <label>描述</label>
-                    <textarea class="form-control" name="remark"  rows="3"></textarea>
-                    <small class="text-muted">描述.</small>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label>备注</label>
-                    <textarea class="form-control" name="remark"  rows="3"></textarea>
-                    <small class="text-muted">主要用于内部标注描述.</small>
-                </fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> 同时推送消息
-                    </label>
-                </div>
+                <#--<fieldset class="form-group">-->
+                    <#--<label>描述</label>-->
+                    <#--<textarea class="form-control" name="description"  rows="3"></textarea>-->
+                    <#--<small class="text-muted">描述.</small>-->
+                <#--</fieldset>-->
+                <#--<fieldset class="form-group">-->
+                    <#--<label>备注</label>-->
+                    <#--<textarea class="form-control" name="remark"  rows="3"></textarea>-->
+                    <#--<small class="text-muted">主要用于内部标注描述.</small>-->
+                <#--</fieldset>-->
+                <#--<div class="checkbox">-->
+                    <#--<label>-->
+                        <#--<input type="checkbox"> 同时推送消息-->
+                    <#--</label>-->
+                <#--</div>-->
                 <button type="submit" class="btn btn-primary">保存</button>
             </form>
         </div>

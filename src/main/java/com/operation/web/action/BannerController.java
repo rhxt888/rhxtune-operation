@@ -36,8 +36,10 @@ public class BannerController {
         return "banner/index";
     }
 
-    @RequestMapping(value = "add", method = {RequestMethod.GET, RequestMethod.POST})
-    public String add(HttpServletRequest request) {
+    @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
+    public String add(HttpServletRequest request,
+                      @ModelAttribute YyBanner yyBanner,
+                      Map<String,Object> model) {
 
         String redirect = "banner/banner-add";
         if (request.getMethod().equals(RequestMethod.POST.toString())) {
