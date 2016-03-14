@@ -3,6 +3,7 @@ package com.operation.spi;
 import com.operation.domain.YyAdminUser;
 import com.operation.domain.YyArticle;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,5 +41,7 @@ public interface IYyArticleService {
     void delete(String adminUserId);
 
     YyArticle  update(YyArticle article);
+
+    List<YyArticle> findByTemplate(String template);
 
 }

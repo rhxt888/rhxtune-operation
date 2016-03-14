@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/style/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style/spaces.css">
-    <title>添加管理员-瑞华信通运营系统</title>
+    <title>内容详情-瑞华信通运营系统</title>
 </head>
 <body>
 <#include "../fragment/navbar.html">

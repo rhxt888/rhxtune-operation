@@ -16,20 +16,12 @@
             <h5>添加Banner内容</h5>
             <form action="/banner/add" method="post">
                 <fieldset class="form-group">
-                    <label for="exampleInputEmail1">app</label>
+                    <label for="exampleInputEmail1">banner显示的位置</label>
                     <select class="form-control c-select" id="exampleSelect2" name="role">
                         <option value="admin" selected>甜园生活</option>
                         <option value="operation">甜园TV</option>
                     </select>
                     <small class="text-muted">.</small>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="name">运营位</label>
-                    <select class="form-control c-select" id="exampleSelect2" name="role">
-                        <option value="admin" selected>首页顶部</option>
-                        <option value="operation">邻里页中部</option>
-                    </select>
-                    <small class="text-muted">这个banner将显示于运营位上.</small>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="exampleSelect2">小区(可选)</label>

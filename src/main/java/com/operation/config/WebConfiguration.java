@@ -28,6 +28,14 @@ public class WebConfiguration implements EnvironmentAware{
     private RelaxedPropertyResolver propertyResolver;
 
 
+    public String getPagePrefix() {
+        return propertyResolver.getProperty("api.prefix");
+    }
+
+    public String getApiPrefix() {
+        return propertyResolver.getProperty("page.prefix");
+    }
+
     public String getSessionName() {
         return propertyResolver.getProperty("session.name");
     }

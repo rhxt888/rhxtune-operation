@@ -15,13 +15,36 @@ import java.util.Map;
 public interface IYyBannerService {
     /**
      * 添加修改banner
-     * @param yyPosition
+     *
      * @param banner
      */
-    void save(YyPosition yyPosition, YyBanner banner);
+    void save(YyBanner banner);
+
+    /**
+     * 更新 banner
+     *
+     * @param banner
+     */
+    void update(YyBanner banner);
+
+    /**
+     * 更新banner状态
+     *
+     * @param id
+     * @param status
+     */
+    void updateStatus(String id, String status);
+
+    /**
+     * 删除banner
+     *
+     * @param id
+     */
+    void delete(String id);
 
     /**
      * 查找所有banner
+     *
      * @param pageSize
      * @param pageIndex
      * @param keyword
@@ -40,12 +63,28 @@ public interface IYyBannerService {
 
     /**
      * 添加位置
+     *
      * @param position
      */
     void savePosition(YyPosition position);
 
+    void enablePosition(String id, boolean isEnable);
+
     /**
+     * 更新运营位
      *
+     * @param position
+     */
+    void updatePosition(YyPosition position);
+
+    /**
+     * 删除运营位
+     *
+     * @param positionId
+     */
+    void deletePosition(String positionId);
+
+    /**
      * @param pageSize
      * @param pageIndex
      * @param keyword
@@ -53,4 +92,13 @@ public interface IYyBannerService {
      */
     Map<String, Object> findAllPosition(Integer pageSize, Integer pageIndex, String keyword);
 
+    List<YyPosition> findAllPosition();
+
+    /**
+     * 根据position id查询 position 信息
+     *
+     * @param positionId
+     * @return
+     */
+    YyPosition findPositionById(String positionId);
 }

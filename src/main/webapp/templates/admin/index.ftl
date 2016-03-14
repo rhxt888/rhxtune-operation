@@ -48,8 +48,8 @@
                         </#switch>
                     </td>
                     <td>
-                        <#if admin.createTime?exists>
-                       ${admin.createTime?number_to_date?string("MM/dd HH:mm")!}
+                        <#if admin.createdTime?exists>
+                       ${admin.createdTime?number_to_date?string("MM/dd HH:mm")!}
                         </#if>
                     </td>
                     <td>

@@ -20,9 +20,14 @@ public class YyApp {
     @Id
     private String id;
     private String name;
-    private String appSlug;
-    private String status;  //dev,prod,del
+
+    private String slug;
+
+    private String status = "dev";  //dev,prod,del
+
     private String description;
+
+    private String version = "v1.0";
 
     @Embedded
     private YyAdminUser adminUser;
@@ -31,13 +36,15 @@ public class YyApp {
     @Embedded(concreteClass = java.util.TreeMap.class)
     private Map<String, Object> contactInfo;
 
+    private String articleId;
+
     //用户协议URL
     private String agreementUrl;
 
-    @Embedded
-    private YyArticle agreement;
 
-    private long createTime = new Date().getTime();
+    private boolean isDeleted = false;
+
+    private long createdTime = new Date().getTime();
 
     public String getId() {
         return id;
@@ -55,12 +62,12 @@ public class YyApp {
         this.name = name;
     }
 
-    public String getAppSlug() {
-        return appSlug;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setAppSlug(String appSlug) {
-        this.appSlug = appSlug;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getDescription() {
@@ -71,12 +78,12 @@ public class YyApp {
         this.description = description;
     }
 
-    public long getCreateTime() {
-        return createTime;
+    public long getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
     }
 
     public String getStatus() {
@@ -111,11 +118,30 @@ public class YyApp {
         this.agreementUrl = agreementUrl;
     }
 
-    public YyArticle getAgreement() {
-        return agreement;
+
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
-    public void setAgreement(YyArticle agreement) {
-        this.agreement = agreement;
+    public void setDeleted(boolean deleted) {
+
+        isDeleted = deleted;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+
+        this.version = version;
+    }
+
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 }

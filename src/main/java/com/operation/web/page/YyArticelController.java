@@ -30,6 +30,6 @@ public class YyArticelController {
 
         model.put("content", article);
 
-        return article.getTemplate();
+        return "page/" + article.getTemplate();
     }
 }

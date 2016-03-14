@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,7 +48,7 @@ public class YyArticleService implements IYyArticleService {
     public Map<String, Object> findAll(Integer pageSize, Integer pageIndex, String status, Boolean isDeleted, String keyword) {
         int limit = pageSize == null ? 10 : pageSize;
         int offset = (pageIndex - 1) * limit;
-        Query query = yyArticleDao.createQuery().limit(limit).offset(offset).filter("status", status).filter("isDeleted", isDeleted);
+        Query query = yyArticleDao.createQuery().filter("status", status).filter("isDeleted", isDeleted).limit(limit).offset(offset);
         Map result = new HashMap();
         result.put("total", query.countAll());
         result.put("list", query.asList());
@@ -90,5 +91,11 @@ public class YyArticleService implements IYyArticleService {
         yyArticleDao.update(query, updateOperations);
 
         return article;
+    }
+
+    @Override
+    public List<YyArticle> findByTemplate(String template) {
+        Query query = yyArticleDao.createQuery().filter("template", template);
+        return  yyArticleDao.find(query).asList();
     }
 }

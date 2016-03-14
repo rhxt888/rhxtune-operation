@@ -20,46 +20,56 @@
                 <div class="pull-left">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label class="sr-only" for="exampleInputEmail3">状态</label>
-                            <select class="c-select">
-                                <option selected="">状态</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <label for="exampleInputEmail3">状态</label>
+                            <select class="c-select" name="status">
+                                <option value="dev" selected>开发中</option>
+                                <option value="prod">已上线</option>
+                                <option value="offline">未上线</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">删除状态</label>
+                            <select class="c-select" name="isDeleted">
+                                <option value="false">否</option>
+                                <option value="true">是</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">查询</button>
                     </form>
                 </div>
                 <div class="pull-right">
-                    <a href="/content/add" class="btn btn-success-outline">添加APP</a>
+                    <a href="/app/add" class="btn btn-success-outline">添加APP</a>
                 </div>
 
             </div>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>#编号</th>
                     <th>名称</th>
                     <th>别名</th>
                     <th>状态</th>
+                    <th>版本</th>
                     <th>创建时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <#if articleList?has_content>
-                    <#list articleList.list?exists as article>
+                <#if appList.list?has_content>
+                    <#list appList.list as app>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>${app.name}</td>
+                        <td>${app.slug}</td>
+                        <td>${app.status}</td>
+                        <td>${app.version}</td>
                         <td>
-                            <a href="/${article.id}/update" class="btn btn-sm btn-info-outline">修改</a>
-                            <a href="/${article.id}/del" class="btn btn-sm btn-info-outline">删除</a>
-                            <a href="/${article.id}" class="btn btn-sm btn-info-outline">详情</a>
+                            <#if app.createdTime?exists>
+                               ${app.createdTime?number_to_date?string("MM/dd HH:mm")!}
+                            </#if>
+                        </td>
+                        <td>
+                            <a href="/app/${app.id}/update" class="btn btn-sm btn-info-outline">修改</a>
+                            <a href="/app/${app.id}/del" class="btn btn-sm btn-danger-outline">删除</a>
+                            <a href="/app/${app.id}" class="btn btn-sm btn-info-outline">详情</a>
                         </td>
                     </tr>
                     </#list>

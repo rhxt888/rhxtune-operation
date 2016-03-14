@@ -30,12 +30,11 @@
                         <div class="pull-left">
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputEmail3">APP</label>
-                                    <select class="c-select">
-                                        <option selected="">APP</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <label  for="exampleInputEmail3">应用</label>
+                                    <select class="c-select" name="">
+                                        <#list appList as app>
+                                            <option value="${app.id}" selected="">${app.name}</option>
+                                        </#list>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">查询</button>
@@ -51,7 +50,7 @@
                         <tr>
                             <th>#编号</th>
                             <th>名称</th>
-                            <th>别名(标识)</th>
+                            <th>应用</th>
                             <th>启用状态</th>
                             <th>创建时间</th>
                             <th>操作</th>
@@ -59,19 +58,23 @@
                         </thead>
                         <tbody>
                         <#if positionList?has_content>
-                            <#list positionList.list?exists as position>
+                            <#list positionList.list as position>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <th scope="row">${position.num}</th>
+                                <td>${position.name}</td>
+                                <td>${position.appInfo.name}</td>
                                 <td>
-                                    <a href="/${position.id}/update" class="btn btn-sm btn-info-outline">修改</a>
-                                    <a href="/${position.id}/del" class="btn btn-sm btn-info-outline">删除</a>
-                                    <a href="/${position.id}" class="btn btn-sm btn-info-outline">详情</a>
+                                    <#if position.isEnable??>
+                                        是
+                                    <#else >
+                                        否
+                                    </#if>
+                                </td>
+                                <td>${position.createdTime?number_to_date?string("MM/dd HH:mm")!}</td>
+                                <td>
+                                    <a href="/banner/position/${position.id}/update" class="btn btn-sm btn-info-outline">修改</a>
+                                    <a href="/banner/position/${position.id}/del" class="btn btn-sm btn-danger-outline">删除</a>
+                                    <a href="/banner/position/${position.id}" class="btn btn-sm btn-info-outline">详情</a>
                                 </td>
                             </tr>
                             </#list>

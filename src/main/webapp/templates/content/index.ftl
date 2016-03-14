@@ -26,9 +26,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail3">是否已删除</label>
+                            <label for="exampleInputEmail3">删除状态</label>
                             <select class="c-select" name="isDeleted">
-                                <option selected value="false">否</option>
+                                <option value="false">否</option>
                                 <option value="true">是</option>
                             </select>
                         </div>
@@ -52,7 +52,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#if articleList?has_content>
+                <#if articleList.list?has_content>
                     <#list articleList.list as article>
                     <tr>
                         <td>${article.title}</td>
@@ -81,13 +81,12 @@
                         </td>
                         <td>
                             <a href="/content/${article.id}/update" class="btn btn-sm btn-info-outline">修改</a>
-                            <a href="/content/${article.id}/del" class="btn btn-sm btn-info-outline">删除</a>
+                            <a href="/content/${article.id}/del" class="btn btn-sm btn-danger-outline">删除</a>
                             <a href="/content/${article.id}" class="btn btn-sm btn-info-outline">详情</a>
                         </td>
                     </tr>
                     </#list>
                 <#else>
-
                 </#if>
                 </tbody>
             </table>
