@@ -101,4 +101,11 @@ public interface IYyBannerService {
      * @return
      */
     YyPosition findPositionById(String positionId);
+
+    /**
+     * 根据 banner id查询 banner信息
+     * @param id
+     * @return
+     */
+    YyBanner findBannerById(String id);
 }

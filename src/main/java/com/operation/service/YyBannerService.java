@@ -226,4 +226,15 @@ public class YyBannerService implements IYyBannerService {
 
         return yyPositionDao.findOne(query);
     }
+
+    /**
+     * 根据 banner id查询 banner信息
+     * @param id
+     * @return
+     */
+    @Override
+    public YyBanner findBannerById(String id) {
+        Query query = yyBannerDao.createQuery().filter("_id",new ObjectId(id));
+        return yyBannerDao.findOne(query);
+    }
 }

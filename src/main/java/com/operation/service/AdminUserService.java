@@ -184,4 +184,10 @@ public class AdminUserService implements IAdminUserService {
         Query query = yyAdminUserDao.createQuery().filter("_id", new ObjectId(adminUserId));
         return yyAdminUserDao.findOne(query);
     }
+
+    @Override
+    public List<YyAdminUser> findAll() {
+        Query query = yyAdminUserDao.createQuery().filter("isDeleted", false);
+        return query.asList();
+    }
 }

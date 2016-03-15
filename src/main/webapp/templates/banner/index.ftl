@@ -59,30 +59,45 @@
                         <thead>
                         <tr>
                             <th>#编号</th>
-                            <th>名称</th>
                             <th>标题</th>
                             <th>状态</th>
+                            <th>阅读数</th>
                             <th>起始时间</th>
-                            <th>创建时间</th>
-                            <th>是否已被删除</th>
+                            <th>结束时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
+
                         <#if bannerList?has_content>
-                            <#list bannerList.list?exists as banner>
+                            <#list bannerList.list as banner>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <td>${banner.title}</td>
                                 <td>
-                                    <a href="/${banner.id}/update" class="btn btn-sm btn-info-outline">修改</a>
-                                    <a href="/${banner.id}/del" class="btn btn-sm btn-info-outline">删除</a>
-                                    <a href="/${banner.id}" class="btn btn-sm btn-info-outline">详情</a>
+                                    <#if banner.status == 'draft'>
+                                        草稿
+                                    <#elseif banner.status == 'online'>
+                                        已发布上线
+                                    <#elseif banner.status == 'offline'>
+                                        已下线
+                                    </#if>
+                                </td>
+                                <td>${banner.viewCount}</td>
+                                <td>
+                                    <#if banner.startTime?exists>
+                                        ${banner.startTime?number_to_date?string("MM/dd HH:mm")!}
+                                    </#if>
+                                </td>
+                                <td>
+                                    <#if banner.endTime?exists>
+                                        ${banner.endTime?number_to_date?string("MM/dd HH:mm")!}
+                                    </#if>
+                                </td>
+                                <td>
+                                    <a href="/banner/${banner.id}/update" class="btn btn-sm btn-info-outline">修改</a>
+                                    <a href="/banner/${banner.id}/del" class="btn btn-sm btn-info-outline">删除</a>
+                                    <a href="/banner/${banner.id}" class="btn btn-sm btn-info-outline">详情</a>
                                 </td>
                             </tr>
                             </#list>

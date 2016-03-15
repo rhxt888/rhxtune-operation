@@ -79,4 +79,6 @@ public interface IAdminUserService {
 
     YyAdminUser findById(String adminUserId);
 
+    List<YyAdminUser> findAll();
+
 }
