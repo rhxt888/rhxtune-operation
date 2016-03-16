@@ -27,9 +27,93 @@
            </ul>
 
            <!-- Tab panes -->
-           <div class="tab-content">
-               <div role="tabpanel" class="tab-pane active" id="tag">
+           <#--<div class="tab-content">-->
+               <#--<div role="tabpanel" class="tab-pane active" id="tag">-->
 
+               <#--</div>-->
+           <#--</div>-->
+           <div class="tab-content">
+               <div role="tabpanel" class="tab-pane active">
+                   <div class="clearfix mvm">
+                       <div class="pull-left">
+                           <form class="form-inline">
+                               <div class="form-group">
+                                   <label class="sr-only" for="exampleInputEmail3">tag</label>
+                                   <select class="c-select">
+                                       <option selected="">运营位</option>
+                                       <option value="1">One</option>
+                                       <option value="2">Two</option>
+                                       <option value="3">Three</option>
+                                   </select>
+                               </div>
+                               <div class="form-group">
+                                   <label class="sr-only" for="exampleInputPassword3">小区</label>
+                                   <select class="c-select">
+                                       <option selected="">小区</option>
+                                       <option value="1">One</option>
+                                       <option value="2">Two</option>
+                                       <option value="3">Three</option>
+                                   </select>
+                               </div>
+                               <button type="submit" class="btn btn-primary">查询</button>
+                           </form>
+                       </div>
+                       <div class="pull-right">
+                           <a href="/tag/add" class="btn btn-success-outline">添加tag</a>
+                       </div>
+
+                   </div>
+                   <table class="table table-bordered">
+                       <thead>
+                       <tr>
+                           <th>#编号</th>
+                           <th>标题</th>
+                           <th>状态</th>
+                           <th>阅读数</th>
+                           <th>起始时间</th>
+                           <th>结束时间</th>
+                           <th>操作</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+
+                       <#if bannerList?has_content>
+                           <#list bannerList.list as banner>
+                           <tr>
+                               <th scope="row">1</th>
+                               <td>${banner.title}</td>
+                               <td>
+                                   <#if banner.status == 'draft'>
+                                       草稿
+                                   <#elseif banner.status == 'online'>
+                                       已发布上线
+                                   <#elseif banner.status == 'offline'>
+                                       已下线
+                                   </#if>
+                               </td>
+                               <td>${banner.viewCount}</td>
+                               <td>
+                                   <#if banner.startTime?exists>
+                                        ${banner.startTime?number_to_date?string("MM/dd HH:mm")!}
+                                    </#if>
+                               </td>
+                               <td>
+                                   <#if banner.endTime?exists>
+                                        ${banner.endTime?number_to_date?string("MM/dd HH:mm")!}
+                                    </#if>
+                               </td>
+                               <td>
+                                   <a href="/banner/${banner.id}/update" class="btn btn-sm btn-info-outline">修改</a>
+                                   <a href="/banner/${banner.id}/del" class="btn btn-sm btn-info-outline">删除</a>
+                                   <a href="/banner/${banner.id}" class="btn btn-sm btn-info-outline">详情</a>
+                               </td>
+                           </tr>
+                           </#list>
+                       <#else>
+
+                       </#if>
+                       </tbody>
+                   </table>
                </div>
            </div>
        </div>
