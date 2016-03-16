@@ -1,5 +1,6 @@
 package com.operation.service;
 
+import com.mongodb.DBCollection;
 import com.operation.dao.YyFeedbackCateDao;
 import com.operation.dao.YyFeedbackDao;
 import com.operation.dao.YyFeedbackPreDao;
@@ -79,6 +80,16 @@ public class FeedbackService implements IFeedbackService{
     }
 
     /**
+     * 查询所有反馈分类
+     * @return
+     */
+    @Override
+    public List<YyFeedbackCate> findAllCate() {
+        Query query = yyFeedbackCateDao.createQuery();
+        return query.asList();
+    }
+
+    /**
      * 查询所有预置反馈内容
      *
      * @param pageSize
@@ -118,6 +129,23 @@ public class FeedbackService implements IFeedbackService{
     @Override
     public List<YyFeedbackPre> findPreByAppSlug(String appSlug) {
         Query query = yyFeedbackPreDao.createQuery().filter("appSlug",appSlug);
+        return query.asList();
+    }
+
+    /**
+     * 根据name查询
+     * @param name
+     * @return
+     */
+    @Override
+    public List<YyFeedbackCate> findCateByName(String name) {
+        Query query = yyFeedbackCateDao.createQuery().filter("name",name);
+        return query.asList();
+    }
+
+    @Override
+    public List<YyFeedbackCate> findCateByNameAndAppSlug(String name, String appSlug) {
+        Query query = yyFeedbackCateDao.createQuery().filter("name",name).filter("appSlug",appSlug);
         return query.asList();
     }
 }

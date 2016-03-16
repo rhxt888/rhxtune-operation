@@ -45,6 +45,12 @@ public interface IFeedbackService {
     Map<String,Object> findAllCate(Integer pageSize, Integer pageIndex, String keyword);
 
     /**
+     * 查询所有反馈分类
+     * @return
+     */
+    List<YyFeedbackCate>findAllCate();
+
+    /**
      * 查询所有预置反馈内容
      * @param pageSize
      * @param pageIndex
@@ -67,4 +73,17 @@ public interface IFeedbackService {
      */
     List<YyFeedbackPre> findPreByAppSlug(String appSlug);
 
+    /**
+     * 根据name查询
+     * @param name
+     * @return
+     */
+    List<YyFeedbackCate> findCateByName(String name);
+
+    /**
+     * 根据name查询
+     * @param name
+     * @return
+     */
+    List<YyFeedbackCate>findCateByNameAndAppSlug(String name,String appSlug);
 }

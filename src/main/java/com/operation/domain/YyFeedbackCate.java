@@ -48,4 +48,14 @@ public class YyFeedbackCate {
     public void setAppSlug(String appSlug) {
         this.appSlug = appSlug;
     }
+
+    @Override
+    public String toString() {
+        return "YyFeedbackCate{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", appSlug='" + appSlug + '\'' +
+                ", createdTime=" + createdTime +
+                '}';
+    }
 }
