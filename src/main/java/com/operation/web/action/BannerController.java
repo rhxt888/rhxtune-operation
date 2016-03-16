@@ -1,11 +1,15 @@
 package com.operation.web.action;
 
+import com.operation.domain.YyAdminUser;
+import com.operation.domain.YyApp;
 import com.operation.domain.YyBanner;
 import com.operation.domain.YyPosition;
 import com.operation.spi.IAdminUserService;
 import com.operation.spi.IMcommunityService;
 import com.operation.spi.IYyAppService;
 import com.operation.spi.IYyBannerService;
+import com.operation.web.utils.SessionUtil;
+import com.rhxtune.base.model.mongo.MCommunity;
 import com.rhxtune.base.provider.dao.mongo.CommunityDao;
 import com.rhxtune.base.spi.community.ICommunityService;
 import org.springframework.stereotype.Controller;
@@ -40,6 +44,9 @@ public class BannerController {
     IAdminUserService adminUserService;
     @Resource
     IMcommunityService mcommunityService;
+
+    @Resource
+    SessionUtil sessionUtil;
 
 
     /**
@@ -79,6 +86,9 @@ public class BannerController {
                       String startTimeStr,
                       String endTimeStr,
                       Map<String,Object> model,
+                      @RequestParam(required = false) String appId,
+                      @RequestParam(required = false) String positionId,
+                      @RequestParam(required = false) String communityId,
                       @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex,
                       @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                       @RequestParam(value = "keyword", required = false) String keyword
@@ -93,7 +103,18 @@ public class BannerController {
             yyBanner.setViewCount(0l);
             yyBanner.setCreatedTime(new Date().getTime());
             yyBanner.setDeleted(false);
-
+            //查应用
+            YyApp yyApp = yyAppService.findOne(appId);
+            //查位置
+            YyPosition yyPosition = yyBannerService.findPositionById(positionId);
+            //当前登录的用户信息
+            YyAdminUser yyAdminUser = sessionUtil.getSessionUser();
+            //查询小区信息
+            MCommunity mCommunity = mcommunityService.findById(communityId);
+            yyBanner.setPosition(yyPosition);
+            yyBanner.setAppInfo(yyApp);
+            yyBanner.setAdminUser(yyAdminUser);
+            yyBanner.setCommunity(mCommunity);
             yyBannerService.save(yyBanner);
             redirect = "redirect:/banner";
         }else{
@@ -118,6 +139,9 @@ public class BannerController {
     public String update(HttpServletRequest request,
                          @PathVariable String id,
                          @ModelAttribute YyBanner yyBanner,
+                         @RequestParam(required = false) String appId,
+                         @RequestParam(required = false) String positionId,
+                         @RequestParam(required = false) String communityId,
                          String startTimeStr,
                          String endTimeStr,
                          Map<String,Object> model) throws ParseException {
@@ -129,6 +153,18 @@ public class BannerController {
             Date endTime = sdf.parse(endTimeStr);
             yyBanner.setStartTime(startTime.getTime());
             yyBanner.setEndTime(endTime.getTime());
+            //查应用
+            YyApp yyApp = yyAppService.findOne(appId);
+            //查位置
+            YyPosition yyPosition = yyBannerService.findPositionById(positionId);
+            //当前登录的用户信息
+            YyAdminUser yyAdminUser = sessionUtil.getSessionUser();
+            //查询小区信息
+            MCommunity mCommunity = mcommunityService.findById(communityId);
+            yyBanner.setPosition(yyPosition);
+            yyBanner.setAppInfo(yyApp);
+            yyBanner.setAdminUser(yyAdminUser);
+            yyBanner.setCommunity(mCommunity);
             yyBannerService.update(yyBanner);
             redirect = "redirect:/banner";
         }else {
@@ -149,10 +185,22 @@ public class BannerController {
      * @param bannerId
      * @return
      */
-    @RequestMapping(value = "{bannerId}/del", method = RequestMethod.GET)
+    @RequestMapping(value = "/banner/{bannerId}/del", method = RequestMethod.GET)
     public String del(@PathVariable String bannerId) {
-
+        yyBannerService.delete(bannerId);
         return "redirect:/banner";
+    }
+
+    /**
+     * 查看详情
+     * @param bannerId
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/{bannerId}", method = RequestMethod.GET)
+    public String bannerDetial(@PathVariable String bannerId,Map<String,Object> model) {
+        model.put("banner",yyBannerService.findBannerById(bannerId));
+        return "banner/banner-detail";
     }
 
 

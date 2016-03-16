@@ -3,6 +3,7 @@ package com.operation.service;
 import com.operation.spi.IMcommunityService;
 import com.rhxtune.base.model.mongo.MCommunity;
 import com.rhxtune.base.provider.dao.mongo.CommunityDao;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.query.Query;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,15 @@ public class McommunityService implements IMcommunityService{
         Query<MCommunity> query = communityDao.createQuery().disableValidation();
         MCommunity mCommunity = query.get();
         return query.asList();
+    }
+
+    /**
+     * 根据小区的id查询小区信息
+     * @param communityId
+     * @return
+     */
+    @Override
+    public MCommunity findById(String communityId) {
+        return communityDao.createQuery().disableValidation().filter("_id",new ObjectId(communityId)).get();
     }
 }

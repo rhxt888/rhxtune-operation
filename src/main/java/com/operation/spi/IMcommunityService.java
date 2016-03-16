@@ -13,4 +13,6 @@ import java.util.List;
 public interface IMcommunityService {
 
     List<MCommunity> findAll();
+
+    MCommunity findById(String communityId);
 }
