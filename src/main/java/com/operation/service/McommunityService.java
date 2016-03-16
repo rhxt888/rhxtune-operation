@@ -22,7 +22,8 @@ public class McommunityService implements IMcommunityService{
 
     @Override
     public List<MCommunity> findAll() {
-        Query query = communityDao.createQuery();
+        Query<MCommunity> query = communityDao.createQuery().disableValidation();
+        MCommunity mCommunity = query.get();
         return query.asList();
     }
 }

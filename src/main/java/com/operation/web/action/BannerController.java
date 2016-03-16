@@ -99,8 +99,9 @@ public class BannerController {
         }else{
             model.put("appList",yyAppService.findAll());
             model.put("positionList", yyBannerService.findAllPosition());
+            model.put("communityList",mcommunityService.findAll());
             model.put("adminUserList",adminUserService.findAll());
-//            model.put("communityList",mcommunityService.findAll());
+
         }
 
         return redirect;
@@ -111,22 +112,33 @@ public class BannerController {
      * 修改banner
      * @param request
      * @param id
-     * @param banner
      * @return
      */
     @RequestMapping(value = "{id}/update", method = {RequestMethod.GET, RequestMethod.POST})
     public String update(HttpServletRequest request,
                          @PathVariable String id,
-                         @ModelAttribute YyBanner banner,
-                         Map<String,Object> model) {
+                         @ModelAttribute YyBanner yyBanner,
+                         String startTimeStr,
+                         String endTimeStr,
+                         Map<String,Object> model) throws ParseException {
 
         String redirect = "banner/banner-update";
         if (request.getMethod().equals(RequestMethod.POST.toString())) {
-            //add
+            SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+            Date startTime = sdf.parse(startTimeStr);
+            Date endTime = sdf.parse(endTimeStr);
+            yyBanner.setStartTime(startTime.getTime());
+            yyBanner.setEndTime(endTime.getTime());
+            yyBannerService.update(yyBanner);
             redirect = "redirect:/banner";
         }else {
             model.put("appList",yyAppService.findAll());
             model.put("banner",yyBannerService.findBannerById(id));
+            YyBanner resBanner = yyBannerService.findBannerById(id);
+            Date startDate = new Date(resBanner.getStartTime());
+            Date endDate = new Date(resBanner.getEndTime());
+            model.put("startDate",startDate);
+            model.put("endDate",endDate);
             model.put("positionList",yyBannerService.findAllPosition());
         }
         return redirect;

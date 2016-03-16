@@ -14,10 +14,10 @@
     <div class="row">
         <div class="col-sm-6">
             <h5>添加运营位</h5>
-            <form action="/banner/position/${banner.id}/update" method="post">
+            <form action="/banner/${banner.id}/update" method="post">
                 <fieldset class="form-group">
                     <label for="exampleSelect2">应用</label>
-                    <select class="form-control c-select" id="exampleSelect2" name="appId">
+                    <select class="form-control c-select" id="exampleSelect2" name="appInfo.id">
                     <#list appList as app >
                         <option value="${app.id}" <#if banner.appInfo.id = app.id>selected</#if> >${app.name}</option>
                     </#list>
@@ -93,11 +93,11 @@
                     <div class="form-inline">
                         <div class="form-group">
                             <label for="">开始时间</label>
-                            <input type="date" class="form-control" id="startTime"  name="startTimeStr">
+                            <input type="date" class="form-control" id="startTime"  name="startTimeStr" value="${(startDate?string("yyyy-MM-dd"))!}">
                         </div>
                         <div class="form-group">
                             <label for="">结束时间</label>
-                            <input type="date" class="form-control" id="endTime"  name="endTimeStr">
+                            <input type="date" class="form-control" id="endTime"  name="endTimeStr" value="${(endDate?string("yyyy-MM-dd"))!}">
                         </div>
                     </div>
                     <small class="text-muted">展示多长时间,如果时间很长,需要设置很大一个结束时间</small>
@@ -105,12 +105,11 @@
 
                 <fieldset class="form-group">
                     <label>描述</label>
-                    <textarea class="form-control" name="description"  rows="3" ></textarea>
+                    <textarea class="form-control" name="description"  rows="3">${banner.description}</textarea>
                     <small class="text-muted">描述.</small>
                 </fieldset>
-                <fieldset class="form-group">
                     <label>备注</label>
-                    <textarea class="form-control" name="remark"  rows="3" ></textarea>
+                    <textarea class="form-control" name="remark"  rows="3">${banner.remark}</textarea>
                     <small class="text-muted">主要用于内部标注描述.</small>
                 </fieldset>
                 <button type="submit" class="btn btn-primary">保存</button>

@@ -32,14 +32,14 @@
                     </select>
                     <small class="text-muted">.</small>
                 </fieldset>
-                <#--<fieldset class="form-group">-->
-                    <#--<label for="exampleSelect1">小区(可选)</label>-->
-                    <#--<select class="form-control c-select" id="community" name="community.id">-->
-                    <#--<#list communityList as comm >-->
-                        <#--<option value="${comm.id}" >${comm.name}</option>-->
-                    <#--</#list>-->
-                    <#--</select>-->
-                <#--</fieldset>-->
+                <fieldset class="form-group">
+                    <label for="exampleSelect1">小区(可选)</label>
+                    <select class="form-control c-select" id="community" name="community.id">
+                    <#list communityList as comm >
+                        <option value="${comm.id}" >${comm.name}</option>
+                    </#list>
+                    </select>
+                </fieldset>
                     <small class="text-muted">.</small>
                 <fieldset class="form-group">
                     <label>标题</label>
