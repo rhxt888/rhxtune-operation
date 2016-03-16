@@ -65,7 +65,6 @@ public interface IAdminUserService {
 
     /**
      * 修改登陆密码
-     *
      * @param email
      * @param password
      * @return
