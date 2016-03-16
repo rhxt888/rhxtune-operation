@@ -17,7 +17,7 @@
             <form action="/banner/add" method="post">
                 <fieldset class="form-group">
                     <label for="exampleSelect2">应用</label>
-                    <select class="form-control c-select" id="appId" name="appInfo.id">
+                    <select class="form-control c-select" id="appId" name="appId">
                     <#list appList as app >
                         <option value="${app.id}" >${app.name}</option>
                     </#list>
@@ -25,7 +25,7 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="exampleSelect1">banner显示的位置</label>
-                    <select class="form-control c-select" id="exampleSelect1" name="position.id">
+                    <select class="form-control c-select" id="exampleSelect1" name="positionId">
                     <#list positionList as pos >
                         <option value="${pos.id}" >${pos.name}</option>
                     </#list>
@@ -34,7 +34,7 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="exampleSelect1">小区(可选)</label>
-                    <select class="form-control c-select" id="community" name="community.id">
+                    <select class="form-control c-select" id="community" name="communityId">
                     <#list communityList as comm >
                         <option value="${comm.id}" >${comm.name}</option>
                     </#list>
